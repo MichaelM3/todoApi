@@ -5,7 +5,7 @@ class Api::V1::AuthController < ApplicationController
     if @user&.password_digest == params[:password]
       render json: @user, serializer: Api::V1::UserSerializer
     else
-      render json: { errors: 'Username or password is incorrect!' }
+      render json: { errors: 'Username or password is incorrect!' }, status: :unauthorized
 
     end
   end
