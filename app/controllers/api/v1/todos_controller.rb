@@ -18,7 +18,7 @@ class Api::V1::TodosController < ApplicationController
     @todo = Todo.new(todo_params)
 
     if @todo.save
-      render json: @todo, status: :created, location: @todo
+      render json: @todo, status: :created
     else
       render json: @todo.errors, status: :unprocessable_entity
     end
@@ -46,6 +46,6 @@ class Api::V1::TodosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def todo_params
-      params.require(:todo).permit(:title, :description, :deadline, :isCompleted, :user_id_id)
+      params.require(:todo).permit(:title, :description, :deadline, :isCompleted, :user_id)
     end
 end
